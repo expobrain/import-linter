@@ -2,6 +2,7 @@ import itertools
 import re
 from typing import Dict, Iterable, List, Pattern, Set, Tuple, Union, cast
 
+from importlinter.application import output
 from importlinter.domain.imports import DirectImport, ImportExpression, Module
 from importlinter.domain.ports.graph import ImportGraph
 
@@ -71,7 +72,7 @@ def import_expressions_to_imports(
                     )
                 matched = True
         if not matched:
-            raise MissingImport(
+            output.print(
                 f"Ignored import expression {expression} didn't match anything in the graph."
             )
     return list(imports)
